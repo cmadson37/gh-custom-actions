@@ -68,3 +68,8 @@ jobs:
         uses: geekyeggo/delete-artifact@v2
         with:
           name: dist-files
+  information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run custom action
+        uses: ./.github/actions/deploy-s3-js
