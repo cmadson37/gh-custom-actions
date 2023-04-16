@@ -68,8 +68,3 @@ jobs:
         uses: geekyeggo/delete-artifact@v2
         with:
           name: dist-files
-  deployS3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run custom action
-        uses: ./.github/actions/cached-deps
