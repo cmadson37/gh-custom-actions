@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - deploy-s3
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -68,3 +69,8 @@ jobs:
         uses: geekyeggo/delete-artifact@v2
         with:
           name: dist-files
+  information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy s3 action
+        uses: ./.github/actions/cached-deps
