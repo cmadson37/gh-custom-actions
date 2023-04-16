@@ -65,6 +65,7 @@ jobs:
       - name: Deploy site
         run: echo "Deploying..."
       - name: Deploy website files to S3 bucket
+        id: deployS3
         uses: ./.github/actions/deploy-s3-js
         env:
           # replace the dummy1/2 below with repository secrets"
@@ -75,6 +76,9 @@ jobs:
           bucket: bucket1
           bucket-region: us-west-1
           dist-folder: ./dist
+      - name: display url
+        run: |
+          echo "Live URL:: $${{ steps.deployS3.outputs.website-url }}"
       - name: cleanup artifacts
         uses: geekyeggo/delete-artifact@v2
         with:
