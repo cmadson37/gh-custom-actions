@@ -71,9 +71,5 @@ jobs:
   deployS3:
     runs-on: ubuntu-latest
     steps:
-      - name: show directory
-        run: |
-          ls -la ./github/actions/cached-deps
-          ls -la ./github/actions/deploy-s3-javascript
       - name: Run custom action
-        uses: ./.github/actions/deploy-s3-javascript
+        uses: ./.github/actions/cached-deps
