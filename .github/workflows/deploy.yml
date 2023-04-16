@@ -64,14 +64,18 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
+      - name: Deploy website files to S3 bucket
+        uses: ./.github/actions/deploy-s3-js
+        env:
+          # replace the dummy1/2 below with repository secrets"
+          AWS_ACCCESS_KEY_ID: "dummy1"
+          AWS_SECRET_ACCESS_KEY: "dummy2"
+          # secrets.<field -- use same name>
+        with:
+          bucket: bucket1
+          bucket-region: us-west-1
+          dist-folder: ./dist
       - name: cleanup artifacts
         uses: geekyeggo/delete-artifact@v2
         with:
           name: dist-files
-  information:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Run custom action
-        uses: ./.github/actions/deploy-s3-js
